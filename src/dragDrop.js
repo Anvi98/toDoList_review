@@ -5,6 +5,7 @@
 
 import { clearAll } from './index.js';
 import addTask from './addTask.js';
+import storageAvailable from './localStorage.js';
 
 export let tasks = [];
 
@@ -29,7 +30,9 @@ const addListeners = (elements) => {
 /// Code for local Storage Save.
 
 export const saveLocalstorage = () => {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  if (storageAvailable('localStorage')){
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
 };
 
 // Help save any changes in real time (Save position after DragDrop, etc...)
